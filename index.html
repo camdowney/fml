@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html lang='en'>
+  <head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Todos - FML</title>
+    <meta name='description' content='Functional Markup Language Demo Application'>
+    <script src='./generator.js' type='module'></script>
+    <link href='./style.css' rel='stylesheet'></link>
+  </head>
+  <f-layout>
+    <section>
+      <div class='shelf'>
+        <form onsubmit='return false'>
+          <input placeholder='Enter text here'>
+          <button type='submit'>Submit</button>
+        </form>
+        <f-todos uid='todoList'></f-todos>
+        <f-test>
+          <slot-debug>
+            This text will be printed to console.
+          </slot-debug>
+        </f-test>
+      </div>
+    </section>
+  </f-layout>
+</html>
+
+<script type='module'>
+  import { onRender, onSubmit, useState, arrPush, getCookie, setCookie} from './fml.js'
+
+  const todoState = useState('todoList')
+
+  onRender(() => {
+    todoState.set({ list: getCookie('todoList') })
+    onSubmit('form', addTodo)
+  })
+
+  const addTodo = () => {
+    const form = document.querySelector('form')
+    const input = form.querySelector('input')
+    if (!input.value) return
+
+    let list = arrPush(todoState.get().list, input.value)
+    todoState.set({ list })
+    setCookie('todoList', list)
+
+    input.value = ''
+  }
+</script>
