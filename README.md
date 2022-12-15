@@ -9,4 +9,4 @@ The idea is that a single "generator" script makes all components accessible acr
 </f-example-component>
 ```
 
-The generator script may accordingly export an exampleComponent function that will receive the props id = '123' and children = '<div>child</div>'. Additionally, it will receive a uid prop given to it by the generator which may be used to access the component's state.
+The generator script may accordingly contain an exampleComponent function that will receive the props id = '123' and children = '&lt;div>child&lt;/div>'. Additionally, it will receive a uid prop given to it by the generator which may be used to access the component's state.
