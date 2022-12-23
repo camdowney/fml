@@ -3,7 +3,7 @@ FML is a novel JS library that attempts to mash together the functionality of we
 
 The idea is that a single "generator" script makes all components accessible across the application, which can then be used in the following manner in plain HTML:
 
-```
+```html
 <f-example-component id='123'>
   <div>child</div>
 </f-example-component>
